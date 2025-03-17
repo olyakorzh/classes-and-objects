@@ -15,13 +15,23 @@
                 this.brand = brand;
             }
 
-            getInfo(type, brand) {
+            getInfo() {
                 return `Тип: ${this.type}, Бренд: ${this.brand}`;
             }
 
-            getPrice(price) {
-                return `Цена: ${this.price}`;
+            getPrice() {
+                return `Цена: ${this.price}`
             }
+
+
+            // можно делать двумя способами
+            // getInfo(type, brand) {
+            //     return `Тип: ${type}, Бренд: ${brand}`;
+            // }
+
+            // getPrice() {
+            //     return `Цена: ${this.price}`
+            // }
         }
 
         class Car extends Transport {
@@ -30,7 +40,7 @@
                 this.doors = doors;
             }
             
-            getDoorsCount(doors) {
+            getDoorsCount() {
                 return `Количество дверей: ${this.doors}`;
             }
         }
@@ -41,7 +51,7 @@
                 this.speed = speed; 
             }
 
-            getMaxSpeed(speed){
+            getMaxSpeed(){
                 return `Максимальная скорость мотоцикла:  ${this.speed}`;
             }
         }
@@ -84,27 +94,22 @@
     }
     ];
 
-// let transport = data.map(item =>{
-//     if(item.type === 'car'){
-//         return new Car(item.brand, item.price, item.doors);
-//     } else if (item.type === 'bike'){
-//         return new Bike(item.brand, item.price, item.speed);
-//     }   
-// });
-
 let transport = data.map(item =>{
     if(item.type === 'car'){
-        console.log(new Car(item.brand, item.price, item.doors));
+        return new Car(item.type, item.price, item.brand, item.doors);
     } else if (item.type === 'bike'){
-        console.log(new Bike(item.brand, item.price, item.speed));
+        return new Bike(item.type, item.price, item.brand, item.maxSpeed);
     }   
 });
 
 transport.forEach(item=> {
     console.log(item.getInfo());
     console.log(item.getPrice());
-    console.log(item.getDoorsCount());
-    console.log(item.getMaxSpeed());    
+    if(item.type === 'car') {
+        console.log(item.getDoorsCount());
+    } else if (item.type === 'bike') {
+        console.log(item.getMaxSpeed());    
+    }
 });
     </script>
 </body>
